@@ -31,13 +31,9 @@ export default function WaterPage() {
   setLoading(true);
 
   try {
-    const today = new Date();
-    const localDate = `${today.getFullYear()}-${String(
-      today.getMonth() + 1
-    ).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    const localDate = new Date().toISOString();
 
     await WaterService.logWater(amount, localDate);
-
     toast.success(`Logged ${amount}ml of water`);
     await fetchWater();
   } catch (error) {
